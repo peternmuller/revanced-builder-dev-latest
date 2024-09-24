@@ -1,6 +1,6 @@
 #!/system/bin/sh
 {
 	MODDIR=${0%/*}
-	rm "/data/adb/rvhc/${MODDIR##*/}".apk
-	rmdir "/data/adb/rvhc"
+	rm "/data/adb/rvpnm/${MODDIR##*/}".apk
+	rmdir "/data/adb/rvpnm"
 } &

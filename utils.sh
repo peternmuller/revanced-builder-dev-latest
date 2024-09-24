@@ -82,13 +82,13 @@ get_rv_prebuilts() {
 			name=$(jq -r .name <<<"$asset")
 			file="${dir}/${name}"
 			gh_dl "$file" "$url" >&2 || return 1
-			if [ "$tag" = "Integrations" ]; then integs_file=$file; fi
 		else
 			name=$(basename "$file")
 			tag_name=$(cut -d'-' -f3- <<<"$name")
 			tag_name=v${tag_name%.*}
 			if [ "$tag_name" = "v" ]; then abort; fi
 		fi
+		if [ "$tag" = "Integrations" ] && [ ! -f "$file" ]; then integs_file=$file; fi
 
 		echo "$tag: $(cut -d/ -f1 <<<"$src")/${name}  " >>"${cl_dir}/changelog.md"
 		echo -n "$file "
@@ -134,10 +134,10 @@ get_prebuilts() {
 		HTMLQ="${BIN_DIR}/htmlq/htmlq-x86_64"
 	fi
 	mkdir -p ${MODULE_TEMPLATE_DIR}/bin/arm64 ${MODULE_TEMPLATE_DIR}/bin/arm ${MODULE_TEMPLATE_DIR}/bin/x86 ${MODULE_TEMPLATE_DIR}/bin/x64
-	gh_dl "${MODULE_TEMPLATE_DIR}/bin/arm64/cmpr" "https://github.com/j-hc/cmpr/releases/latest/download/cmpr-arm64-v8a"
-	gh_dl "${MODULE_TEMPLATE_DIR}/bin/arm/cmpr" "https://github.com/j-hc/cmpr/releases/latest/download/cmpr-armeabi-v7a"
-	gh_dl "${MODULE_TEMPLATE_DIR}/bin/x86/cmpr" "https://github.com/j-hc/cmpr/releases/latest/download/cmpr-x86"
-	gh_dl "${MODULE_TEMPLATE_DIR}/bin/x64/cmpr" "https://github.com/j-hc/cmpr/releases/latest/download/cmpr-x86_64"
+	gh_dl "${MODULE_TEMPLATE_DIR}/bin/arm64/cmpr" "https://github.com/peternmuller/cmpr/releases/latest/download/cmpr-arm64-v8a"
+	gh_dl "${MODULE_TEMPLATE_DIR}/bin/arm/cmpr" "https://github.com/peternmuller/cmpr/releases/latest/download/cmpr-armeabi-v7a"
+	gh_dl "${MODULE_TEMPLATE_DIR}/bin/x86/cmpr" "https://github.com/peternmuller/cmpr/releases/latest/download/cmpr-x86"
+	gh_dl "${MODULE_TEMPLATE_DIR}/bin/x64/cmpr" "https://github.com/peternmuller/cmpr/releases/latest/download/cmpr-x86_64"
 }
 
 config_update() {
@@ -588,9 +588,9 @@ MODULE_ARCH=$ma" >"$1/config"
 module_prop() {
 	echo "id=${1}
 name=${2}
-version=v${3}
+version=${3}
 versionCode=${NEXT_VER_CODE}
-author=j-hc
+author=Peter (@peternmuller)
 description=${4}" >"${6}/module.prop"
 
 	if [ "$ENABLE_MAGISK_UPDATE" = true ]; then echo "updateJson=${5}" >>"${6}/module.prop"; fi
