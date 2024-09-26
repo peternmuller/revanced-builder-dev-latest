@@ -1,6 +1,6 @@
 YouTube-Extended: 19.29.42  
-YT-Music-Extended: 7.20.51  
 YouTube-anddea: 19.29.42  
+YT-Music-Extended: 7.20.51  
 YT-Music-anddea: 7.20.51  
 
 Install [ReVanced GmsCore](https://github.com/ReVanced/GmsCore/releases/latest) for non-root YouTube and YouTube Music APKs  
@@ -13,5 +13,5 @@ Patches: anddea/revanced-patches-2.229.0-dev.7.jar
 
 CLI: inotia00/revanced-cli-4.6.1-all.jar  
 Integrations: inotia00/revanced-integrations-1.13.1.apk  
-Patches: inotia00/revanced-patches-4.14.1-dev.1.jar  
-[Changelog](https://github.com/inotia00/revanced-patches/releases/tag/v4.14.1-dev.1)  
+Patches: inotia00/revanced-patches-4.14.1-dev.2.jar  
+[Changelog](https://github.com/inotia00/revanced-patches/releases/tag/v4.14.1-dev.2)  
