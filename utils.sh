@@ -88,6 +88,7 @@ get_rv_prebuilts() {
 			tag_name=v${tag_name%.*}
 			if [ "$tag_name" = "v" ]; then abort; fi
 		fi
+		if [ "$tag" = "Integrations" ] && [ ! -f "$file" ]; then integs_file=$file; fi
 
 		echo "$tag: $(cut -d/ -f1 <<<"$src")/${name}  " >>"${cl_dir}/changelog.md"
 		echo -n "$file "
